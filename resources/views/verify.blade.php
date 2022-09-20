@@ -21,7 +21,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" </head>
+
+</head>
 
 <body id="page-top">
 
@@ -29,67 +30,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('home') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Dashboard -->
-
-
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            @if (Auth::user()->role == 1)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">
-                        <i class="fas fa-users"></i>
-                        <span>Users</span></a>
-
-                </li>
-            @endif
-            @if (Auth::user()->role != 3)
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                        data-target="#collapseAttendance" aria-expanded="true" aria-controls="collapseAttendance">
-                        <i class="fas fa-book"></i> <span>Attendance</span>
-                    </a>
-                    <div id="collapseAttendance" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('attendance.mark') }}">Mark</a>
-                            <a class="collapse-item" href="{{ route('reports.create') }}">Report</a>
-                        </div>
-                    </div>
-                </li>
-            @endif
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLeave"
-                    aria-expanded="true" aria-controls="collapseLeave">
-                    <i class="fas fa-sign-out-alt"></i> <span>Leaves</span>
-                </a>
-                <div id="collapseLeave" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @if (Auth::user()->role != 1)
-                            <a class="collapse-item" href="{{ route('leaves.own') }}">My Leaves</a>
-                            <a class="collapse-item" href="{{ route('leaves.apply') }}">Apply</a>
-                        @endif
-                        @if (Auth::user()->role != 3)
-                            <a class="collapse-item" href="{{ route('leaves.index') }}">Manage</a>
-                        @endif
-                    </div>
-                </div>
-            </li>
-        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column" style="min-height: 100vh">
 
             <!-- Main Content -->
             <div id="content">
@@ -116,16 +61,13 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}">
-                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Change Password') }}
-                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                                         document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Logout') }}
                                 </a>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -141,7 +83,25 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @yield('content')
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header text-white bg-warning">{{ __('Alert') }}</div>
+
+                                    <div class="card-body">
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+
+                                        {{ __('Please contact your manager to approve your account!!!') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -152,8 +112,7 @@
 
 
             <!-- Footer -->
-            <footer class="sticky-footer" style="background-color: rgb(221, 211, 211)" <div
-                class="container my-auto">
+            <footer class="sticky-footer" style="background-color: rgb(221, 211, 211)" <div class="container my-auto">
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; Your Website 2021</span>
                 </div>
@@ -177,9 +136,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    @yield('footer')
+
 </body>
 
 </html>

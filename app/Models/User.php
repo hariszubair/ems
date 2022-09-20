@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,7 +22,12 @@ class User extends Authenticatable
         'last_name',
         'first_name',
         'email',
+        'email_verified_at',
         'password',
+        'role',
+        'casual_leave',
+        'annual_leave',
+        'carry_forward_date'
     ];
 
     /**
@@ -42,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function todays_attendance()
+    {
+        return $this->hasOne(Attendance::class)->where('date', '=', Carbon::now()->format('Y-m-d'));
+    }
 }

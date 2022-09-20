@@ -2,15 +2,11 @@
   
 # Employees-Management Application
 
-- Technology Used : Laravel-8, Bootstrap-4, Vue.js, Moment.js, Vue Datepicker.
+- Technology Used : Laravel-8, Bootstrap-4,
 #
 </div>
 
 ## Features & Requirements :
-
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-1.png?raw=true"></p>
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-2.png?raw=true"></p>
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-3.png?raw=true"></p>
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-4.png?raw=true"></p>
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-5.png?raw=true"></p>
-<p align="center"><img src="https://github.com/Shahed-Chy-Suzan/Employees-Management/blob/master/z_others/employees-management-requirements-images/employees-management-requirement-6.png?raw=true"></p>
+Three Roles are defined. User, Manager and Admin.
+Reports can be generated for a specific month or a specific year.
+There are two types of leaves Casual and Anuual. Annual will carry forward. Medical will come under casual leaves.

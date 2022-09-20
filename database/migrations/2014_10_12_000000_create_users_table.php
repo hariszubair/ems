@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->smallInteger('roles')->default(3);
             $table->string('username');
             $table->string('last_name');
             $table->string('first_name');
@@ -22,6 +23,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->smallInteger('casual_leave')->nullable();
+            $table->smallInteger('annual_leave')->nullable();
+            $table->date('carry_forward_date')->default('2021-12-31');
             $table->timestamps();
         });
     }

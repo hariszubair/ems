@@ -1,21 +1,35 @@
 @extends('layouts.main')
 
 @section('content')
-
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+    @endif
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Users</h1>
-    </div>
-
+    @if (\Carbon\Carbon::now()->format('m') == 12)
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Users</h1>
+            <form method="POST" action="{{ route('leaves.carry_forward') }}">
+                @csrf
+                <button class="btn btn-danger">Carry forward leaves </button>
+            </form>
+        </div>
+    @endif
     <div class="row">
-        <div class="card mx-auto border-success">
+        <div class="card w-100">
             <div>
                 @if (session()->has('message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>{{ session('message')}}</strong>
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                        <strong>{{ session('message') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 @endif
             </div>
@@ -34,13 +48,11 @@
                             </div>
                         </form>
                     </div>
-                    <div>
-                        <a href="{{ route('users.create') }}" class="btn btn-primary mb-2">Create</a>
-                    </div>
+
                 </div>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table" id="user_table">
                     <thead>
                         <tr>
                             <th scope="col">#Id</th>
@@ -56,7 +68,13 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success">Edit</a>
+                                    <div>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success">Edit</a>
+                                        @if (!$user->email_verified_at)
+                                            <a href="{{ route('users.verify', $user->id) }}"
+                                                class="btn btn-warning text-dark">Verify</a>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,4 +83,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        $(document).ready(function() {
+            $('#user_table').DataTable();
+        });
+    </script>
 @endsection

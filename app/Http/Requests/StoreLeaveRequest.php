@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
-class UserUpdateRequest extends FormRequest
+class StoreLeaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +26,9 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string', 'max:255', 'unique:users,id'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id'],
-            'role' => ['required', Rule::in([1, 2, 3])],
-
+            'from' => ['required', 'date', 'before_or_equal:to', 'after_or_equal:' . Carbon::now()->format('Y-m-d')],
+            'to' => ['required', 'date', 'after_or_equal:from', 'after_or_equal:' . Carbon::now()->format('Y-m-d')],
+            'type' => ['required', Rule::in(['Casual', 'Annual', 'Unpaid'])],
         ];
     }
 }
