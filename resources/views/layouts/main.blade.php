@@ -155,7 +155,7 @@
             <footer class="sticky-footer" style="background-color: rgb(221, 211, 211)" <div
                 class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; 5 Tree Digital 2022</span>
                 </div>
         </div>
         </footer>
