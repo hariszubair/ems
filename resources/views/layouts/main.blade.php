@@ -173,7 +173,7 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ mix('js/app.js') }}"></script> {{-- eta add korchi tai ar extra Bootstrap lage nai --}}
+    <script src="{{ asset('js/app.js') }}"></script> {{-- eta add korchi tai ar extra Bootstrap lage nai --}}
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
