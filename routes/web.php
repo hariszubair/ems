@@ -67,3 +67,7 @@ Route::get('/clear-cache', function () {
   $exitCode = Artisan::call('optimize:clear');
   // return what you want
 });
+Route::get('/migration', function () {
+  $exitCode = Artisan::call('migrate');
+  // return what you want
+});
