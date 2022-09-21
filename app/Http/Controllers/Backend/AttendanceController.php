@@ -37,7 +37,7 @@ class AttendanceController extends Controller
                 ->on('attendances.id', '=', DB::raw("(SELECT max(id) from attendances WHERE attendances.user_id = users.id)"))->where('date', Carbon::now()->format('Y-m-d'));
         })->get(['users.id as id', 'first_name', 'last_name', 'attendances.status', 'attendances.date']);
         $date = Carbon::now()->format('Y-m-d');
-        return view('attendance.mark', compact('users', 'date'));
+        return view('Attendance.mark', compact('users', 'date'));
     }
     public function store(StoreAttendanceRequest $request, $id)
     {
